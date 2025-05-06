@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nong Namsai Music</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
+    }
+
+    iframe {
+      width: 560px;
+      height: 315px;
+      border: none;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .floating-pixel {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #fff;
+      image-rendering: pixelated;
+      animation: float 10s linear infinite;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Now Playing from ทฤษฎีส่งเพลงจีบเธอ 21 วัน Playlist 🎧</h1>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=d0e0_Db8g4fFs041&amp;list=PLTwfzw7cHkg6cOzXcy6SqB0KcHaYkHgUV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('floating-pixel');
+      pixel.style.left = Math.random() * 100 + 'vw';
+      pixel.style.animationDelay = Math.random() * 10 + 's';
+      pixel.style.backgroundColor = ['#ffffff', '#add8e6', '#ffb6c1', '#dda0dd'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(pixel);
+    }
+  </script>
+
+</body>
+</html>
