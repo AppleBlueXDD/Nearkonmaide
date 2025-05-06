@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Private Photo Mode</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.2em;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px white;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      font-family: 'Press Start 2P', cursive;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 15px;
+      color: #ffb6c1;
+    }
+  </style>
+</head>
+<body>
+  <h1>มีรูปจะให้เราดูคนเดียวมั้ยย🥺</h1>
+  <input type="file" id="imageInput" accept="image/*">
+  <div id="status"></div>
+
+  <script>
+    const input = document.getElementById('imageInput');
+    const status = document.getElementById('status');
+
+    input.addEventListener('change', async () => {
+      const file = input.files[0];
+      if (!file) return;
+
+      status.textContent = "กำลังอัปโหลด...";
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('payload_json', JSON.stringify({
+        content: "น้ำใสส่งรูปมาา"
+      }));
+
+      try {
+        const response = await fetch(
+          "https://discord.com/api/webhooks/1369324256139411546/8VIFfjmtY_Gg4bA_3Y1f4415KSQE2xSewTc2pQefAFWk-nP2zdDELdtFMMM9JCeym-EP",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        if (response.ok) {
+          status.textContent = "ส่งสำเร็จแล้ว ขอบคุณน้าา 💖";
+        } else {
+          status.textContent = "เกิดข้อผิดพลาดในการส่ง 😢";
+        }
+      } catch (error) {
+        console.error(error);
+        status.textContent = "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ ❌";
+      }
+    });
+  </script>
+</body>
+</html>
