@@ -8,58 +8,91 @@
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
-      font-family: 'Press Start 2P', cursive;
+      margin: 0;
+      padding: 0;
       background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Press Start 2P', cursive;
       color: white;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
       text-align: center;
     }
 
     h1 {
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px #000;
+      text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
     }
 
     input[type="file"] {
       font-family: 'Press Start 2P', cursive;
-      margin-top: 10px;
+      margin-top: 15px;
       color: white;
+      background-color: transparent;
     }
 
     button {
       margin-top: 20px;
       padding: 10px 20px;
       font-family: 'Press Start 2P', cursive;
-      font-size: 0.9em;
-      background-color: #ff69b4;
-      border: none;
+      font-size: 0.8em;
+      background-color: #6a5acd;
+      border: 3px solid #ff69b4;
       color: white;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.2s, background-color 0.3s;
+      box-shadow: 0 0 10px #fff;
     }
 
     button:hover {
+      transform: scale(1.1);
       background-color: #9370db;
     }
 
     .status {
       margin-top: 15px;
-      font-size: 0.8em;
+      font-size: 0.7em;
+    }
+
+    .floating-pixel {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #fff;
+      image-rendering: pixelated;
+      animation: float 10s linear infinite;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); }
+      100% { transform: translateY(-100vh) translateX(50px); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Floating pixels -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('floating-pixel');
+      pixel.style.left = Math.random() * 100 + 'vw';
+      pixel.style.animationDelay = Math.random() * 10 + 's';
+      pixel.style.backgroundColor = ['#ffffff', '#add8e6', '#ffb6c1', '#dda0dd'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(pixel);
+    }
+  </script>
+
   <h1>มีรูปจะให้เราดูคนเดียวมั้ยย 🥺</h1>
   <input type="file" id="imageInput" accept="image/*">
   <button onclick="uploadImage()">ส่งให้เลยย</button>
-
   <div class="status" id="status"></div>
 
   <script>
@@ -69,14 +102,14 @@
       const status = document.getElementById('status');
 
       if (!file) {
-        status.textContent = "กรุณาเลือกรูปก่อนน้า~";
+        status.textContent = "เลือกรูปก่อนน้า~";
         return;
       }
 
       const formData = new FormData();
       formData.append('file', file);
       formData.append('payload_json', JSON.stringify({
-        content: "📷 น้ำใสส่งรูปมาแบบลับๆ น้า~"
+        content: "📷 น้ำใสส่งรูปมาแล้วนะ~"
       }));
 
       fetch("https://discord.com/api/webhooks/1369324256139411546/8VIFfjmtY_Gg4bA_3Y1f4415KSQE2xSewTc2pQefAFWk-nP2zdDELdtFMMM9JCeym-EP", {
@@ -84,7 +117,7 @@
         body: formData
       }).then(response => {
         if (response.ok) {
-          status.textContent = "ส่งเรียบร้อยแล้วน้า~ ✅";
+          status.textContent = "ส่งเรียบร้อยแล้วน้า ✅";
         } else {
           status.textContent = "เกิดข้อผิดพลาดในการส่ง 😢";
         }
