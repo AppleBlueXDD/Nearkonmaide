@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversary</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: white;
+    }
+
+    .content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #fff;
+      max-width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .message {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      border-radius: 5px;
+      transition: transform 0.2s;
+      box-shadow: 0 0 5px #fff;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #9370db;
+    }
+
+    .image-container {
+      margin-top: 20px;
+    }
+
+    img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <div class="message">
+      <p>ไม่นะ... เราก็ยังไม่ได้เริ่มคบกันเลยนิ!</p>
+      <p>งั้นเรามาเป็นแฟนกันเลยดีมั้ย?</p>
+    </div>
+
+    <div class="image-container">
+      <img src="https://cdn.discordapp.com/attachments/1317420531196100611/1369314432278335550/wmremove-transformed.png?ex=681b68f1&is=681a1771&hm=27483d389464bb4488458e2587ba8b366ba8f3a23570274799aa44b8a9b10e33&" alt="Character Image">
+    </div>
+
+    <div class="buttons">
+      <button onclick="sendResponse(true)">ตกลง</button>
+      <button onclick="sendResponse(false)">ไม่</button>
+    </div>
+  </div>
+
+  <script>
+    function sendResponse(isAccepted) {
+      let message = "";
+      if (isAccepted) {
+        message = "น้ำใสตอบตกลงโว้ยย";
+      } else {
+        message = "น้ำใสไม่ตกลง ไว้ครั้งหน้านะ";
+      }
+
+      // Webhook URL
+      const webhookUrl = "https://discord.com/api/webhooks/1369244151295643678/a68UMdQF3Sezn14YDBVRQ36Ae7rixlMWaD4k4Y-wUlNJsvHA0uD_aU51V5Yn1OZ-2Gqp";
+
+      // Send the message to Discord Webhook
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content: message })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+
+</body>
+</html>

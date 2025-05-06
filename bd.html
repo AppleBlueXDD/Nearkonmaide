@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
+    }
+
+    .countdown {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2em;
+      color: #ff69b4;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .age-message {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #fff;
+      text-shadow: 1px 1px #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Namsai Birthday</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <div class="age-message" id="ageMessage"></div>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      let year = now.getFullYear();
+
+      // Set target date for May 23 of the current year
+      let targetDate = new Date(year, 4, 23); // May is month 4 (0-indexed)
+
+      // If the target date has already passed this year, set the target date to next year
+      if (now > targetDate) {
+        year += 1;
+        targetDate = new Date(year, 4, 23); // Set target date to next year
+      }
+
+      // Calculate the difference in milliseconds
+      const diff = targetDate - now;
+
+      // Time calculations
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // Display the result
+      document.getElementById("countdown").innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Calculate age of a person born on May 23, 2554 (2011 AD)
+      const birthYear = 2011;
+      const currentAge = year - birthYear;
+
+      // Display age message
+      document.getElementById("ageMessage").innerHTML = `You gonna be ${currentAge} Year Old`;
+
+      // Update the countdown every second
+      setTimeout(updateCountdown, 1000);
+    }
+
+    // Initialize the countdown
+    updateCountdown();
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nong Namsai</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #fff;
+      text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .menu {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    button {
+      background-color: #6a5acd;
+      border: 3px solid #ff69b4;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1em;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #9370db;
+    }
+
+    .floating-pixel {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #fff;
+      image-rendering: pixelated;
+      animation: float 10s linear infinite;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating pixel animation elements -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('floating-pixel');
+      pixel.style.left = Math.random() * 100 + 'vw';
+      pixel.style.animationDelay = Math.random() * 10 + 's';
+      pixel.style.backgroundColor = ['#ffffff', '#add8e6', '#ffb6c1', '#dda0dd'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(pixel);
+    }
+  </script>
+
+<h1>Nong Namsai</h1>
+<div style="position: absolute; bottom: 10px; right: 10px; font-size: 1em; color: #ffffff; opacity: 1; font-family: 'Press Start 2P', cursive;">
+    V6.23.1
+</div>
+  <div class="menu">
+    <button onclick="location.href='password.html'">Start</button>
+    <button onclick="location.href='Credit.html'">Credit</button>
+    <button onclick="window.close()">Exit</button>
+  </div>
+</body>
+</html>
