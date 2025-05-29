@@ -2,123 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anniversary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anniversary Countdown</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
     body {
       font-family: 'Press Start 2P', cursive;
-      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
-      background-size: cover;
+      color: white;
+      background: none;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       text-align: center;
-      color: white;
     }
-
-    .content {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
+    h1 {
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
+    }
+    .countdown {
+      font-size: 1em;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      margin: 10px;
       border-radius: 10px;
-      box-shadow: 0 0 15px #fff;
-      max-width: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      box-shadow: 0 0 10px #fff;
     }
-
-    .message {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    .count-value {
+      font-size: 2em;
     }
-
-    .buttons {
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    button {
-      background-color: #ff69b4;
-      color: white;
-      font-family: 'Press Start 2P', cursive;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2em;
-      border-radius: 5px;
-      transition: transform 0.2s;
-      box-shadow: 0 0 5px #fff;
-    }
-
-    button:hover {
-      transform: scale(1.1);
-      background-color: #9370db;
-    }
-
-    .image-container {
-      margin-top: 20px;
-    }
-
-    img {
-      width: 150px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-
-  <div class="content">
-    <div class="message">
-      <p>ไม่นะ... เราก็ยังไม่ได้เริ่มคบกันเลยนิ!</p>
-      <p>งั้นเรามาเป็นแฟนกันเลยดีมั้ย?</p>
-    </div>
-
-    <div class="image-container">
-      <img src="https://cdn.discordapp.com/attachments/1317420531196100611/1369314432278335550/wmremove-transformed.png?ex=681b68f1&is=681a1771&hm=27483d389464bb4488458e2587ba8b366ba8f3a23570274799aa44b8a9b10e33&" alt="Character Image">
-    </div>
-
-    <div class="buttons">
-      <button onclick="sendResponse(true)">ตกลง</button>
-      <button onclick="sendResponse(false)">ไม่</button>
-    </div>
-  </div>
+  <h1>Our Anniversary</h1>
+  <div class="countdown" id="toNextMonth8"></div>
+  <div class="countdown" id="toMarch8NextYear"></div>
+  <div class="countdown" id="timeTogether"></div>
 
   <script>
-    function sendResponse(isAccepted) {
-      let message = "";
-      if (isAccepted) {
-        message = "น้ำใสตอบตกลงโว้ยย";
+    function formatTime(ms) {
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function updateCountdowns() {
+      const anniversaryDate = new Date(2025, 2, 8); // March 8, 2025
+      const now = new Date();
+
+      // 1. Next month 8th dayปหห
+      let nextMonth = new Date(now);
+      nextMonth.setMonth(now.getMonth() + 1);
+      nextMonth.setDate(8);
+      nextMonth.setHours(0, 0, 0, 0);
+      const diff1 = nextMonth - now;
+
+      const nextAnniversaryMonth = new Date(now);
+      nextAnniversaryMonth.setMonth(now.getMonth() + 1);
+      nextAnniversaryMonth.setDate(8);
+      nextAnniversaryMonth.setHours(0, 0, 0, 0);
+
+      const monthsOnNext8 = (nextAnniversaryMonth.getFullYear() - anniversaryDate.getFullYear()) * 12 +
+                            (nextAnniversaryMonth.getMonth() - anniversaryDate.getMonth());
+
+      document.getElementById("toNextMonth8").innerHTML = `
+        <div style="margin-bottom: 5px;">Until our ${monthsOnNext8} month</div>
+        <div class="count-value">${formatTime(diff1)}</div>
+      `;
+
+      // Calculate total years for anniversary
+      const totalYears = now.getFullYear() - anniversaryDate.getFullYear() - (now < new Date(now.getFullYear(), 2, 8) ? 1 : 0);
+
+      // 2. March 8 of next year
+      let march8 = new Date(now.getFullYear() + 1, 2, 8); // March is month 2
+      march8.setHours(0, 0, 0, 0);
+      const diff2 = march8 - now;
+      document.getElementById("toMarch8NextYear").innerHTML =
+        `<div style="margin-bottom: 5px;">Until our ${totalYears + 1} Years</div><div class="count-value">${formatTime(diff2)}</div>`;
+
+      // 3. How long since March 8 this year at 00:00
+      let startDate = new Date(now.getFullYear(), 2, 8); // March 8
+      startDate.setHours(0, 0, 0, 0);
+      let diff3 = now - startDate;
+      if (diff3 < 0) {
+        document.getElementById("timeTogether").innerHTML = "Haven't started yet!";
       } else {
-        message = "น้ำใสไม่ตกลง ไว้ครั้งหน้านะ";
+        document.getElementById("timeTogether").innerHTML = `
+          <div style="margin-bottom: 5px;">We Been Together For</div>
+          <div class="count-value">${formatTime(diff3)}</div>
+        `;
       }
 
-      // Webhook URL
-      const webhookUrl = "https://discord.com/api/webhooks/1369244151295643678/a68UMdQF3Sezn14YDBVRQ36Ae7rixlMWaD4k4Y-wUlNJsvHA0uD_aU51V5Yn1OZ-2Gqp";
-
-      // Send the message to Discord Webhook
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ content: message })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+      setTimeout(updateCountdowns, 1000);
     }
-  </script>
 
+    updateCountdowns();
+  </script>
 </body>
 </html>
