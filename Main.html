@@ -41,9 +41,12 @@
 
     .menu {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;      /* เปลี่ยนให้เรียงแนวนอน */
       gap: 18px;
       margin-top: 15px;
+      justify-content: center;  /* จัดให้อยู่ตรงกลาง */
+      align-items: center;
+      flex-wrap: wrap;          /* ถ้าหน้าจอเล็กปุ่มจะขึ้นบรรทัดใหม่ */
     }
 
     .menu a {
