@@ -7,11 +7,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    body {
-      font-family: 'Press Start 2P', cursive;
-      color: white;
-      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
+     body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('background.png') no-repeat center center fixed;
       background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+    }
       display: flex;
       flex-direction: column;
       justify-content: center;
