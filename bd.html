@@ -61,12 +61,12 @@
       let year = now.getFullYear();
 
       // Set target date for May 23 of the current year
-      let targetDate = new Date(year, 4, 23); // May is month 4 (0-indexed)
+      let targetDate = new Date(year, 3, 20); // May is month 4 (0-indexed)
 
       // If the target date has already passed this year, set the target date to next year
       if (now > targetDate) {
         year += 1;
-        targetDate = new Date(year, 4, 23); // Set target date to next year
+        targetDate = new Date(year, 3, 20); // Set target date to next year
       }
 
       // Calculate the difference in milliseconds
@@ -83,7 +83,7 @@
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
       // Calculate age of a person born on May 23, 2011
-      const birthYear = 2011;
+      const birthYear = 2009;
       const currentAge = year - birthYear;
 
       // Display age message
