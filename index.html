@@ -10,8 +10,6 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
-      background-size: cover;
       font-family: 'Press Start 2P', cursive;
       color: white;
       display: flex;
@@ -20,6 +18,17 @@
       justify-content: center;
       height: 100vh;
       overflow: hidden;
+      /* Don't set background here; handled by ::before */
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
     }
 
     h1 {
@@ -92,10 +101,10 @@
     }
   </script>
 
-<h1>Nong Near</h1>
-<div style="position: absolute; bottom: 10px; right: 10px; font-size: 1em; color: #ffffff; opacity: 1; font-family: 'Press Start 2P', cursive;">
+  <h1>Nong Near</h1>
+  <div style="position: absolute; bottom: 10px; right: 10px; font-size: 1em; color: #ffffff; opacity: 1; font-family: 'Press Start 2P', cursive;">
     V13.23.1
-</div>
+  </div>
   <div class="menu">
     <button onclick="location.href='password.html'">Start</button>
     <button onclick="location.href='credit.html'">Credit</button>
