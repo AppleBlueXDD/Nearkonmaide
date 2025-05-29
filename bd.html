@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-     body::before {
+    body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -16,6 +16,8 @@
       filter: blur(5px);
       z-index: -1;
     }
+
+    body {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,21 +54,19 @@
 <body>
   <h1>Namsai Birthday</h1>
   <div class="countdown" id="countdown"></div>
-
   <div class="age-message" id="ageMessage"></div>
-
   <script>
     function updateCountdown() {
       const now = new Date();
       let year = now.getFullYear();
 
       // Set target date for May 23 of the current year
-      let targetDate = new Date(year, 3, 20); // May is month 4 (0-indexed)
+      let targetDate = new Date(year, 4, 23); // May is month 4 (0-indexed)
 
       // If the target date has already passed this year, set the target date to next year
       if (now > targetDate) {
         year += 1;
-        targetDate = new Date(year, 3, 20); // Set target date to next year
+        targetDate = new Date(year, 4, 23); // Set target date to next year
       }
 
       // Calculate the difference in milliseconds
@@ -82,8 +82,8 @@
       document.getElementById("countdown").innerHTML = 
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-      // Calculate age of a person born on May 23, 2554 (2011 AD)
-      const birthYear = 2009;
+      // Calculate age of a person born on May 23, 2011
+      const birthYear = 2011;
       const currentAge = year - birthYear;
 
       // Display age message
