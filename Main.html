@@ -1,69 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nong Near</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Main</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+    }
 
     body {
       margin: 0;
       padding: 0;
-      background: url('https://cdn.discordapp.com/attachments/1317420531196100611/1369246277828874260/Blue_Illustration_Game_Presentation.png?ex=681b2978&is=6819d7f8&hm=0e763a229550347c1968e8d679fe90f13f2e891913cde20a8c7eeeb86f2e4c29&') no-repeat center center fixed;
-      background-size: cover;
       font-family: 'Press Start 2P', cursive;
       color: white;
+      min-height: 100vh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      text-align: center;
+      position: relative;
+      z-index: 0;
     }
 
     h1 {
-      font-size: 3em;
-      color: #fff;
+      font-size: 2.2em;
+      margin-bottom: 30px;
       text-shadow: 2px 2px #ff69b4, -2px -2px #6a5acd;
     }
 
     .menu {
-      margin-top: 30px;
       display: flex;
-      flex-direction: row; /* จัดปุ่มในแนวนอน */
-      gap: 30px; /* เพิ่มระยะห่างระหว่างปุ่ม */
-      flex-wrap: wrap; /* ทำให้ปุ่มห่อไปบรรทัดถัดไปได้ */
-      justify-content: center; /* จัดให้ปุ่มอยู่กลาง */
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 15px;
     }
 
-    button {
-      background-color: #6a5acd;
-      border: 3px solid #ff69b4;
-      color: white;
+    .menu a {
       font-family: 'Press Start 2P', cursive;
       font-size: 1.2em;
-      padding: 15px 20px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.3s;
+      background: #6a5acd;
+      color: #fff;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      padding: 12px 28px;
+      text-decoration: none;
       box-shadow: 0 0 10px #fff;
-      width: auto; /* ปล่อยให้ขนาดปุ่มตามข้อความ */
-      text-align: center;
+      transition: background 0.2s, transform 0.15s;
     }
 
-    button:hover {
-      transform: scale(1.1);
-      background-color: #9370db;
+    .menu a:hover {
+      background: #9370db;
+      color: #ffb6c1;
+      transform: scale(1.07);
+      border-color: #fff;
+    }
+
+    /* Optional: floating pixel effect */
+    .floating-pixel {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #fff;
+      image-rendering: pixelated;
+      animation: float 10s linear infinite;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0);}
+      100% { transform: translateY(-100vh) translateX(50px);}
     }
   </style>
 </head>
 <body>
-  <h1>Nong Namsai</h1>
+
+  <h1>Near Kon Mai Dee</h1>
   <div class="menu">
-    <button onclick="location.href='bd.html'">Birthday</button>
-    <button onclick="location.href='ani.html'">Anniversary</button>
-    <button onclick="location.href='Music.html'">Music</button>
-    <button onclick="location.href='pfm.html'">Pic For Me</button>
+    <a href="pfm.html">Private For Me</a>
+    <a href="Music.html">Music</a>
+    <a href="bd.html">Birthday</a>
+    <a href="password.html">Password</a>
+    <!-- Add more links as you need -->
   </div>
+
+  <script>
+    // Floating Pixel Effect (if you want to keep this feature)
+    for (let i = 0; i < 30; i++) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('floating-pixel');
+      pixel.style.left = Math.random() * 100 + 'vw';
+      pixel.style.animationDelay = Math.random() * 10 + 's';
+      pixel.style.backgroundColor = ['#ffffff', '#add8e6', '#ffb6c1', '#dda0dd'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(pixel);
+    }
+  </script>
+
 </body>
 </html>
