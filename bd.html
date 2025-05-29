@@ -18,12 +18,17 @@
     }
 
     body {
+      font-family: 'Press Start 2P', cursive;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       text-align: center;
+    }
+
+    h1, .countdown, .age-message {
+      font-family: 'Press Start 2P', cursive;
     }
 
     h1 {
@@ -33,7 +38,6 @@
     }
 
     .countdown {
-      font-family: 'Press Start 2P', cursive;
       font-size: 2em;
       color: #ff69b4;
       background-color: rgba(0, 0, 0, 0.5);
@@ -43,7 +47,6 @@
     }
 
     .age-message {
-      font-family: 'Press Start 2P', cursive;
       font-size: 1.5em;
       margin-top: 20px;
       color: #fff;
@@ -52,7 +55,7 @@
   </style>
 </head>
 <body>
-  <h1>Namsai Birthday</h1>
+  <h1>Near Birthday</h1>
   <div class="countdown" id="countdown"></div>
   <div class="age-message" id="ageMessage"></div>
   <script>
@@ -60,13 +63,13 @@
       const now = new Date();
       let year = now.getFullYear();
 
-      // Set target date for May 23 of the current year
-      let targetDate = new Date(year, 3, 20); // May is month 4 (0-indexed)
+      // Set target date for May 20 of the current year
+      let targetDate = new Date(year, 4, 20); // May is month 4 (0-indexed)
 
       // If the target date has already passed this year, set the target date to next year
       if (now > targetDate) {
         year += 1;
-        targetDate = new Date(year, 3, 20); // Set target date to next year
+        targetDate = new Date(year, 4, 20); // Set target date to next year
       }
 
       // Calculate the difference in milliseconds
@@ -82,7 +85,7 @@
       document.getElementById("countdown").innerHTML = 
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-      // Calculate age of a person born on May 23, 2011
+      // Calculate age of a person born on May 20, 2009
       const birthYear = 2009;
       const currentAge = year - birthYear;
 
